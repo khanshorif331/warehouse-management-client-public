@@ -1,6 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+// import ItemDetail from '../../ItemDetail/ItemDetail'
 
 const Item = ({ item }) => {
+	const navigate = useNavigate()
+	const handleManage = id => {
+		navigate(`/itemDetail/${id}`)
+	}
 	console.log(item)
 	return (
 		<div>
@@ -16,7 +22,12 @@ const Item = ({ item }) => {
 					<h2 className='card-title'>{item.name}</h2>
 					<p>{item.description}</p>
 					<div className='card-actions'>
-						<button className='btn btn-primary'>Manage Item</button>
+						<button
+							onClick={() => handleManage(item._id)}
+							className='btn btn-primary'
+						>
+							Manage Item
+						</button>
 					</div>
 				</div>
 			</div>
