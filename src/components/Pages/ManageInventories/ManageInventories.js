@@ -1,12 +1,8 @@
 import React from 'react'
-import { confirmAlert } from 'react-confirm-alert'
+import { Link } from 'react-router-dom'
 import useItems from '../../../hooks/useItems'
 // ES6 Modules or TypeScript
-import Swal from 'sweetalert2'
-
-// CommonJS
-
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+// import Swal from 'sweetalert2'
 
 const ManageInventories = () => {
 	const [items] = useItems()
@@ -29,6 +25,15 @@ const ManageInventories = () => {
 	return (
 		<div>
 			<h1 className='text-center text-2xl my-4'>Manage All Inventories</h1>
+			<div className='border-2 flex justify-center my-6'>
+				<Link to='/addItem'>
+					<button class='relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800'>
+						<span class='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+							Add New Item
+						</span>
+					</button>
+				</Link>
+			</div>
 
 			<div className='overflow-x-auto w-full'>
 				<table className='table max-w-[1800] mx-auto'>
