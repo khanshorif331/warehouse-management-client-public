@@ -13,6 +13,7 @@ const ItemDetail = ({ item }) => {
 		<div>
 			<h1>This is manage item.Product id is: {id}</h1>
 			<p>{itemDetail.name}</p>
+			<img className='w-50' src={itemDetail.img} alt='' />
 		</div>
 	)
 }
