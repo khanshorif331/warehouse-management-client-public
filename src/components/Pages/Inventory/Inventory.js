@@ -1,74 +1,18 @@
-import React from 'react'
+import useItems from '../../../hooks/useItems'
+import Item from './Item/Item'
 
 const Inventory = () => {
+	const [items] = useItems()
+
 	return (
-		<div className='my-9 text-center'>
-			<h1 className='text-xl text-yellow-500'>Inventory Items</h1>
-			<div>
-				<div class='card w-96 bg-base-100 shadow-xl'>
-					<figure class='px-10 pt-10'>
-						<img
-							src='https://api.lorem.space/image/shoes?w=400&h=225'
-							alt='Shoes'
-							class='rounded-xl'
-						/>
-					</figure>
-					<div class='card-body items-center text-center'>
-						<h2 class='card-title'>Shoes!</h2>
-						<p>If a dog chews shoes whose shoes does he choose?</p>
-						<div class='card-actions'>
-							<button class='btn btn-primary'>Buy Now</button>
-						</div>
-					</div>
-				</div>
-				<div class='card w-96 bg-base-100 shadow-xl'>
-					<figure class='px-10 pt-10'>
-						<img
-							src='https://api.lorem.space/image/shoes?w=400&h=225'
-							alt='Shoes'
-							class='rounded-xl'
-						/>
-					</figure>
-					<div class='card-body items-center text-center'>
-						<h2 class='card-title'>Shoes!</h2>
-						<p>If a dog chews shoes whose shoes does he choose?</p>
-						<div class='card-actions'>
-							<button class='btn btn-primary'>Buy Now</button>
-						</div>
-					</div>
-				</div>
-				<div class='card w-96 bg-base-100 shadow-xl'>
-					<figure class='px-10 pt-10'>
-						<img
-							src='https://api.lorem.space/image/shoes?w=400&h=225'
-							alt='Shoes'
-							class='rounded-xl'
-						/>
-					</figure>
-					<div class='card-body items-center text-center'>
-						<h2 class='card-title'>Shoes!</h2>
-						<p>If a dog chews shoes whose shoes does he choose?</p>
-						<div class='card-actions'>
-							<button class='btn btn-primary'>Buy Now</button>
-						</div>
-					</div>
-				</div>
-				<div class='card w-96 bg-base-100 shadow-xl'>
-					<figure class='px-10 pt-10'>
-						<img
-							src='https://api.lorem.space/image/shoes?w=400&h=225'
-							alt='Shoes'
-							class='rounded-xl'
-						/>
-					</figure>
-					<div class='card-body items-center text-center'>
-						<h2 class='card-title'>Shoes!</h2>
-						<p>If a dog chews shoes whose shoes does he choose?</p>
-						<div class='card-actions'>
-							<button class='btn btn-primary'>Buy Now</button>
-						</div>
-					</div>
-				</div>
+		<div>
+			<h1 className='text-xl text-yellow-500 text-center my-9'>
+				Inventory Items
+			</h1>
+			<div className='grid gap-4 grid-cols-3'>
+				{items.slice(0, 6).map(item => (
+					<Item key={item._id} item={item}></Item>
+				))}
 			</div>
 		</div>
 	)
