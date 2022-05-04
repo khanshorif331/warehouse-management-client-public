@@ -7,6 +7,7 @@ import Footer from './components/Shared/Footer/Footer'
 import NotFound from './components/Shared/NotFound/NotFound'
 import ItemDetail from './components/Pages/ItemDetail/ItemDetail'
 import ManageInventories from './components/Pages/ManageInventories/ManageInventories'
+import Blogs from './components/Pages/Blogs/Blogs'
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 					path='/manageInventories'
 					element={<ManageInventories></ManageInventories>}
 				></Route>
+				<Route path='/blogs' element={<Blogs></Blogs>}></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
 			<Footer></Footer>
