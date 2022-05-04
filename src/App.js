@@ -6,6 +6,7 @@ import Header from './components/Shared/Header/Header'
 import Footer from './components/Shared/Footer/Footer'
 import NotFound from './components/Shared/NotFound/NotFound'
 import ItemDetail from './components/Pages/ItemDetail/ItemDetail'
+import ManageInventories from './components/Pages/ManageInventories/ManageInventories'
 
 function App() {
 	return (
@@ -17,6 +18,10 @@ function App() {
 				<Route
 					path='/itemDetail/:id'
 					element={<ItemDetail></ItemDetail>}
+				></Route>
+				<Route
+					path='/manageInventories'
+					element={<ManageInventories></ManageInventories>}
 				></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
