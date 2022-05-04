@@ -10,7 +10,6 @@ const Item = ({ item }) => {
 	const handleManage = id => {
 		navigate(`/itemDetail/${id}`)
 	}
-	console.log(item)
 	return (
 		<div data-aos='flip-left' className='anime p-4'>
 			<div class='flex justify-center'>
@@ -31,20 +30,18 @@ const Item = ({ item }) => {
 						<h5 class='text-gray-900 text-xl font-medium mb-2'>
 							{item.name}
 						</h5>
-						<p class='text-gray-700 text-base mb-4'>{item.description}</p>
+						<p className='text-indigo-900'>Price : $ {item.price}</p>
+						<p className='text-indigo-900'>Quantity : {item.quantity}</p>
+						<p className='text-indigo-900'>
+							Supplier Name: {item.supplier}
+						</p>
+						<p class='text-gray-700 text-base my-4'>{item.description}</p>
 						<button
 							onClick={() => handleManage(item._id)}
 							class='btn btn-outline btn-secondary'
 						>
 							Manage Items
 						</button>
-						{/* <button
-							onClick={() => handleManage(item._id)}
-							type='button'
-							class=' inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
-						>
-							Manage Item
-						</button> */}
 					</div>
 				</div>
 			</div>
