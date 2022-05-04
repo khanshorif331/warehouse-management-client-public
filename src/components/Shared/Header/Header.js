@@ -37,6 +37,14 @@ const Header = () => {
 						<li>
 							<CustomLink to='/blogs'>Blogs</CustomLink>
 						</li>
+						<li>
+							<CustomLink to='/manageInventories'>
+								Manage Inventories
+							</CustomLink>
+						</li>
+						<li>
+							<CustomLink to='/myitems'>My Items</CustomLink>
+						</li>
 					</ul>
 				</div>
 				<Link to='/' class='btn btn-ghost normal-case text-xl'>
@@ -54,6 +62,14 @@ const Header = () => {
 
 					<li>
 						<CustomLink to='/blogs'>Blogs</CustomLink>
+					</li>
+					<li>
+						<CustomLink to='/manageInventories'>
+							Manage Inventories
+						</CustomLink>
+					</li>
+					<li>
+						<CustomLink to='/myitems'>My Items</CustomLink>
 					</li>
 				</ul>
 			</div>
