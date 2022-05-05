@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 const AddNewItem = () => {
 	const { register, handleSubmit, reset } = useForm()
@@ -16,13 +17,23 @@ const AddNewItem = () => {
 		setItem(inputValue)
 
 		const { data } = await axios.post('http://localhost:5000/items', item)
-		toast.success('Item added succesfully')
-		console.log(data)
+		// toast.success('Item added succesfully')
+		Swal.fire({
+			position: 'center',
+			icon: 'success',
+			title: 'Your Product Added Successfully',
+			showConfirmButton: true,
+			timer: 2500,
+		})
+		// console.log(data)
 		reset()
 	}
 
 	return (
 		<div className='w-full md:w-1/2 mx-auto'>
+			<h1 className='text-center text-2xl'>
+				Provide all info to add new product.
+			</h1>
 			<form
 				className='border-4 mx-auto w-full md:50 mt-10 rounded-lg'
 				onSubmit={handleSubmit(onSubmit)}

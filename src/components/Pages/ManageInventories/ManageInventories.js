@@ -16,17 +16,14 @@ const ManageInventories = () => {
 			confirmButtonText: 'Yes, delete it!',
 		}).then(result => {
 			if (result.isConfirmed) {
-				console.log(result, id)
 				const url = `http://localhost:5000/item/${id}`
 				fetch(url, {
 					method: 'DELETE',
 				})
 					.then(res => res.json())
 					.then(data => {
-						console.log(data)
 						if (data.deletedCount > 0) {
 							const remaining = items.filter(item => item._id !== id)
-							console.log(remaining)
 							setItems(remaining)
 						}
 					})
