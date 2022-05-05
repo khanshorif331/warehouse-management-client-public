@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useItems from '../../../hooks/useItems'
-// ES6 Modules or TypeScript
-// import Swal from 'sweetalert2'
 
 const ManageInventories = () => {
 	const [items, setItems] = useItems()

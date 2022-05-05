@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const ItemDetail = () => {
 	const { id } = useParams()
-	const navigate = useNavigate()
 	const [itemDetail, setItemDetail] = useState({})
 
 	useEffect(() => {
