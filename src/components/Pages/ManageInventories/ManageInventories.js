@@ -5,7 +5,7 @@ import useItems from '../../../hooks/useItems'
 // import Swal from 'sweetalert2'
 
 const ManageInventories = () => {
-	const [items] = useItems()
+	const [items, setItems] = useItems()
 	const handleDelete = id => {
 		const Swal = require('sweetalert2')
 		Swal.fire({
@@ -18,6 +18,17 @@ const ManageInventories = () => {
 			confirmButtonText: 'Yes, delete it!',
 		}).then(result => {
 			if (result.isConfirmed) {
+				const url = `http://localhost:5000/item/${id}`
+				fetch(url, {
+					method: 'DELETE',
+				})
+					.then(res => res.json())
+					.then(data => {
+						if (data.deleteCount > 0) {
+							const remaining = items.filter(item => item._id !== id)
+							setItems(remaining)
+						}
+					})
 				Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
 			}
 		})
