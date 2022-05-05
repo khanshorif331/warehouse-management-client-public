@@ -18,7 +18,7 @@ const AddNewItem = () => {
 		const { data } = await axios.post('http://localhost:5000/items', item)
 		toast.success('Item added succesfully')
 		console.log(data)
-		// reset()
+		reset()
 	}
 
 	return (
