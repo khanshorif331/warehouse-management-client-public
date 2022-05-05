@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import 'react-toastify/dist/ReactToastify.css'
 // import Header from './Header'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import Swal from 'sweetalert2'
@@ -13,19 +13,32 @@ const AddNewItem = () => {
 	const [item, setItem] = useState('')
 
 	const onSubmit = async inputValue => {
+		console.log(inputValue)
 		// setItem(JSON.stringify(item))
 		setItem(inputValue)
+		console.log(item, 'item')
 
 		const { data } = await axios.post('http://localhost:5000/items', item)
+		console.log(data)
 		// toast.success('Item added succesfully')
-		Swal.fire({
-			position: 'center',
-			icon: 'success',
-			title: 'Your Product Added Successfully',
-			showConfirmButton: true,
-			timer: 2500,
-		})
-		// console.log(data)
+		if (!data.success) {
+			console.log('this is false', data)
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: `Something went wrong! ${data.error}`,
+				// footer: '<a href="">Why do I have this issue?</a>',
+			})
+		} else {
+			console.log('inside else', data)
+			Swal.fire({
+				position: 'center',
+				icon: 'success',
+				title: 'Your Product Added Successfully',
+				showConfirmButton: true,
+				timer: 2500,
+			})
+		}
 		reset()
 	}
 
