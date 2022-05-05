@@ -1,9 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useItems from '../../../hooks/useItems'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const ManageInventories = () => {
-	const [items, setItems] = useItems()
+	const [items, setItems] = useState([])
+	const [limit, setLimit] = useState(10)
+	const [pageNumber, setPageNumber] = useState(0)
+	const [totalPage, setTotalPage] = useState(0)
+
+	useEffect(() => {
+		;(async () => {
+			const { data } = await axios.get(
+				`http://localhost:5000/items?limit=${limit}&pageNumber=${pageNumber}`
+			)
+			console.log(data)
+			setItems(data.data)
+			setTotalPage(Math.ceil(data.count / limit))
+		})()
+	}, [limit, pageNumber])
+
 	const handleDelete = id => {
 		const Swal = require('sweetalert2')
 		Swal.fire({
@@ -56,7 +72,7 @@ const ManageInventories = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{items.map(item => {
+						{items?.map(item => {
 							return (
 								<tr key={item._id}>
 									<td>
@@ -99,6 +115,29 @@ const ManageInventories = () => {
 						})}
 					</tbody>
 				</table>
+				<div className='flex py-4 justify-center '>
+					{[...Array(totalPage).keys()].map(number => (
+						<div
+							onClick={() => setPageNumber(number)}
+							className={`mx-3 border border-black px-3  py-1 cursor-pointer ${
+								pageNumber === number ? 'bg-black text-white' : ''
+							}`}
+						>
+							{number + 1}
+						</div>
+					))}
+					<select
+						defaultValue={limit}
+						className='px-4 ml-3'
+						onChange={e => setLimit(e.target.value)}
+					>
+						<option value='5'> 5 </option>
+						<option value='10'> 10 </option>
+						<option value='15'> 15 </option>
+						<option value='20'> 20 </option>
+						<option value='25'> 25 </option>
+					</select>
+				</div>
 			</div>
 		</div>
 	)

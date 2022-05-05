@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
-import useItems from '../../../hooks/useItems'
 import Item from './Item/Item'
+import { useEffect, useState } from 'react'
 
 const Inventory = () => {
-	const [items] = useItems()
+	const [items, setItems] = useState([])
+	useEffect(() => {
+		fetch('http://localhost:5000/items')
+			.then(res => res.json())
+			.then(data => setItems(data))
+	}, [])
 
 	return (
 		<div className='mx-auto'>
