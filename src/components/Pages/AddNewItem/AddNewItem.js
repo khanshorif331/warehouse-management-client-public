@@ -90,7 +90,6 @@ const AddNewItem = () => {
 					className='block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
 					required
 				/>
-				{/* <input type="submit" value="Submit" class="btn" /> */}
 				<input
 					type='submit'
 					className='btn block mx-auto my-6 p-2 text-center w-3/4 rounded-lg cursor-pointer'

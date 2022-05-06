@@ -1,15 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 const ItemDetail = () => {
 	const { id } = useParams()
 	const [itemDetail, setItemDetail] = useState({})
+	const [quantity, setQuantity] = useState(itemDetail.quantity)
+	// console.log(Number(itemDetail.quantity), quantity)
 
+	// console.log(quantity)
 	useEffect(() => {
 		fetch(`http://localhost:5000/itemDetail/${id}`)
 			.then(res => res.json())
 			.then(data => setItemDetail(data))
 	}, [id])
+	let newQuantity
+	const handleDelivered = () => {
+		console.log(itemDetail.quantity)
+		newQuantity = Number(itemDetail.quantity - 1)
+		// const newQuantity = Number(itemDetail.quantity) - 1
+		// const updatedQuantity = {
+		// 	quantity: newQuantity,
+		// }
+		console.log(itemDetail)
+		const url = `http://localhost:5000/itemDetail/${id}`
+		fetch(url, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify({ quantity: newQuantity }),
+		}).then(res =>
+			res.json().then(data => {
+				setQuantity(newQuantity)
+				console.log(data, quantity)
+				toast.success('Item delivered successfully.')
+			})
+		)
+		// setQuantity(newQuantity)
+		console.log(itemDetail.quantity, quantity)
+	}
+	console.log(quantity)
 	return (
 		<div className='max-w-[1200px] p-5 border-8 mx-auto'>
 			<h1 className='text-2xl text-center'> Manage your product</h1>
@@ -29,7 +60,8 @@ const ItemDetail = () => {
 
 					<p className='text-indigo-900'>Price : $ {itemDetail.price}</p>
 					<strong className='text-indigo-900'>
-						Quantity : {itemDetail.quantity}
+						Quantity : {quantity ? quantity : itemDetail.quantity}
+						{/* Quantity : {itemDetail.quantity} */}
 					</strong>
 					<p className='text-indigo-900'>
 						Supplier Name: {itemDetail.supplier}
@@ -37,7 +69,9 @@ const ItemDetail = () => {
 					<p className='text-gray-700 text-base my-4'>
 						{itemDetail.description}
 					</p>
-					<button class='btn btn-active'>Delivered</button>
+					<button onClick={handleDelivered} class='btn btn-active'>
+						Delivered
+					</button>
 					<div className='mt-4'>
 						<input
 							className='p-3 border-2 rounded'
@@ -54,6 +88,7 @@ const ItemDetail = () => {
 						<button class='btn btn-wide my-5'>Manage Inventories</button>
 					</Link>
 				</div>
+				<ToastContainer></ToastContainer>
 			</div>
 		</div>
 	)
