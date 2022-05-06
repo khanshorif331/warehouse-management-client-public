@@ -30,9 +30,6 @@ const Header = () => {
 						<li>
 							<CustomLink to='/'>Home</CustomLink>
 						</li>
-						<li>
-							<CustomLink to='/inventory'>Inventory</CustomLink>
-						</li>
 
 						<li>
 							<CustomLink to='/blogs'>Blogs</CustomLink>
@@ -45,9 +42,9 @@ const Header = () => {
 						<li>
 							<CustomLink to='/myitems'>My Items</CustomLink>
 						</li>
-						<li>
+						{/* <li>
 							<CustomLink to='/login'>Login</CustomLink>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -58,9 +55,6 @@ const Header = () => {
 				<ul className='menu menu-horizontal p-0'>
 					<li>
 						<CustomLink to='/'>Home</CustomLink>
-					</li>
-					<li>
-						<CustomLink to='/inventory'>Inventory</CustomLink>
 					</li>
 
 					<li>
@@ -74,9 +68,9 @@ const Header = () => {
 					<li>
 						<CustomLink to='/myitems'>My Items</CustomLink>
 					</li>
-					<li>
+					{/* <li>
 						<CustomLink to='/login'>Login</CustomLink>
-					</li>
+					</li> */}
 				</ul>
 			</div>
 			<div className='navbar-end'>
