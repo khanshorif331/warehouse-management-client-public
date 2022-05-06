@@ -9,6 +9,7 @@ import ItemDetail from './components/Pages/ItemDetail/ItemDetail'
 import ManageInventories from './components/Pages/ManageInventories/ManageInventories'
 import Blogs from './components/Pages/Blogs/Blogs'
 import AddNewItem from './components/Pages/AddNewItem/AddNewItem'
+import Login from './components/Pages/Login/Login'
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					element={<ManageInventories></ManageInventories>}
 				></Route>
 				<Route path='/addItem' element={<AddNewItem></AddNewItem>}></Route>
+				<Route path='/login' element={<Login></Login>}></Route>
 				<Route path='/blogs' element={<Blogs></Blogs>}></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>

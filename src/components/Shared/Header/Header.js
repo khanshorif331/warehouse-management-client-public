@@ -45,6 +45,9 @@ const Header = () => {
 						<li>
 							<CustomLink to='/myitems'>My Items</CustomLink>
 						</li>
+						<li>
+							<CustomLink to='/login'>Login</CustomLink>
+						</li>
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -70,6 +73,9 @@ const Header = () => {
 					</li>
 					<li>
 						<CustomLink to='/myitems'>My Items</CustomLink>
+					</li>
+					<li>
+						<CustomLink to='/login'>Login</CustomLink>
 					</li>
 				</ul>
 			</div>
