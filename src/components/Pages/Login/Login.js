@@ -1,65 +1,120 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import {
+	useAuthState,
+	useSignInWithEmailAndPassword,
+	useSignInWithGoogle,
+} from 'react-firebase-hooks/auth'
+import auth from '../../../firebase.init'
 
 const Login = () => {
+	const navigate = useNavigate()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [signInWithGoogle, googleUser, googleLoading, googleError] =
+		useSignInWithGoogle(auth)
+	const [signInWithEmailAndPassword, user, loading, error] =
+		useSignInWithEmailAndPassword(auth)
+	// const [user, loading, error] = useAuthState(auth)
+
+	console.log(email, password)
+	const login = e => {
+		e.preventDefault()
+		signInWithEmailAndPassword(email, password, auth)
+
+		console.log('form submitted')
+		setEmail('')
+		setPassword('')
+	}
+
+	if (googleUser || user) {
+		navigate('./home')
+	}
+
 	return (
 		<div>
-			{/* <h1 className='text-center'>LOGIN HERE</h1> */}
-
 			<div class='hero min-h-screen bg-base-200'>
 				<div class='hero-content flex-col lg:flex-row-reverse'>
 					<div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-						<form class='card-body'>
+						<div class='card-body'>
 							<h1 className='text-center text-2xl'> USER LOGIN</h1>
-							<div class='form-control'>
-								<label class='label'>
-									<span class='label-text'>Email</span>
-								</label>
-								<input
-									type='text'
-									placeholder='email'
-									class='input input-bordered'
-								/>
-							</div>
-							<div class='form-control'>
-								<label class='label'>
-									<span class='label-text'>Password</span>
-								</label>
-								<input
-									type='text'
-									placeholder='password'
-									class='input input-bordered'
-								/>
-								<label class='label'>
-									<a href='#' class='label-text-alt link link-hover'>
-										Forgot password?
-									</a>
-								</label>
-								<label class='label'>
-									<p>Don't Have Account?</p>
-									<Link
-										to='/register'
-										class='label-text-alt link link-hover'
-									>
-										REGISTER NOW
-									</Link>
-								</label>
-							</div>
-							<div class='form-control mt-3'>
-								<button class='btn btn-primary'>Login</button>
-								<div className='mt-3'>
-									<div className='border-2'></div>
-									<div className='text-center'>OR</div>
-									<div className='border-2'></div>
+							<form onSubmit={() => login()}>
+								<div class='form-control'>
+									<label class='label'>
+										<span class='label-text'>Email</span>
+									</label>
+									<input
+										onBlur={e => setEmail(e.target.value)}
+										type='email'
+										placeholder='email'
+										class='input input-bordered'
+										required
+									/>
 								</div>
-								<button class='btn btn-accent my-4'>
-									Continue With Google
+								<div class='form-control'>
+									<label class='label'>
+										<span class='label-text'>Password</span>
+									</label>
+									<input
+										onBlur={e => setPassword(e.target.value)}
+										type='text'
+										placeholder='password'
+										class='input input-bordered'
+										required
+									/>
+									<label class='label'>
+										<a
+											href='#'
+											class='label-text-alt link link-hover'
+										>
+											Forgot password?
+										</a>
+									</label>
+									<label class='label'>
+										<p>Don't Have Account?</p>
+										<Link
+											to='/register'
+											class='label-text-alt link link-hover'
+										>
+											REGISTER NOW
+										</Link>
+									</label>
+								</div>
+								{(googleError || error) && (
+									<p className='text-red-600 ml-1'>
+										{googleError.message}
+									</p>
+								)}
+								{(googleLoading || loading) && (
+									<div class='flex justify-center items-center'>
+										<div
+											class='spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full'
+											role='status'
+										>
+											<span class='visually-hidden'>Loading...</span>
+										</div>
+									</div>
+								)}
+								<button class='mx-auto form-control w-full btn btn-primary mt-3'>
+									Login
 								</button>
-								<button class='btn btn-info '>
-									Continue with Facebook
-								</button>
+							</form>
+
+							<div className='mt-3'>
+								<div className='border-2'></div>
+								<div className='text-center'>OR</div>
+								<div className='border-2'></div>
 							</div>
-						</form>
+							<button
+								onClick={() => signInWithGoogle()}
+								class='btn btn-accent my-4'
+							>
+								Continue With Google
+							</button>
+							<button class='btn btn-info'>
+								Continue with Facebook
+							</button>
+						</div>
 					</div>
 
 					<div class='md:w-8/12 lg:w-6/12 mb-12 md:mb-0'>
@@ -72,15 +127,6 @@ const Login = () => {
 				</div>
 			</div>
 		</div>
-
-		// <section class='h-screen'>
-		// 	<div class='container px-6 py-12 h-full'>
-		// 		<div class='flex justify-center items-center flex-wrap h-full g-6 text-gray-800'>
-		//
-
-		// 		</div>
-		// 	</div>
-		// </section>
 	)
 }
 

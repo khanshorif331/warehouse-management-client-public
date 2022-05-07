@@ -42,7 +42,7 @@ const ItemDetail = () => {
 	}
 	console.log(quantity)
 	return (
-		<div className='max-w-[1200px] p-5 border-8 mx-auto'>
+		<div className='max-w-[1200px] p-5 border-8 mx-auto mt-5'>
 			<h1 className='text-2xl text-center'> Manage your product</h1>
 			<div className='grid grid-cols-1 md:grid-cols-2 place-items-center'>
 				<div className='my-7 '>
@@ -53,22 +53,16 @@ const ItemDetail = () => {
 					/>
 				</div>
 				<div className='mx-auto'>
-					<h5 className='text-gray-900 text-xl font-medium mb-2'>
-						{itemDetail.name}
-					</h5>
+					<h5 className=' text-xl font-medium mb-2'>{itemDetail.name}</h5>
 					<p>Product Id : {itemDetail._id}</p>
 
-					<p className='text-indigo-900'>Price : $ {itemDetail.price}</p>
-					<strong className='text-indigo-900'>
+					<p className=''>Price : $ {itemDetail.price}</p>
+					<strong className=''>
 						Quantity : {quantity ? quantity : itemDetail.quantity}
 						{/* Quantity : {itemDetail.quantity} */}
 					</strong>
-					<p className='text-indigo-900'>
-						Supplier Name: {itemDetail.supplier}
-					</p>
-					<p className='text-gray-700 text-base my-4'>
-						{itemDetail.description}
-					</p>
+					<p className=''>Supplier Name: {itemDetail.supplier}</p>
+					<p className=' text-base my-4'>{itemDetail.description}</p>
 					<button onClick={handleDelivered} class='btn btn-active'>
 						Delivered
 					</button>
