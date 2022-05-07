@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
-	useAuthState,
 	useSignInWithEmailAndPassword,
 	useSignInWithGoogle,
 } from 'react-firebase-hooks/auth'
@@ -9,6 +8,7 @@ import auth from '../../../firebase.init'
 
 const Login = () => {
 	const navigate = useNavigate()
+	const location = useLocation()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [signInWithGoogle, googleUser, googleLoading, googleError] =
@@ -17,6 +17,7 @@ const Login = () => {
 		useSignInWithEmailAndPassword(auth)
 	// const [user, loading, error] = useAuthState(auth)
 	const [checkBox, setCheckBox] = useState(false)
+	let from = location.state?.from?.pathname || '/'
 
 	const login = e => {
 		e.preventDefault()
@@ -24,14 +25,11 @@ const Login = () => {
 
 		setEmail('')
 		setPassword('')
-		// window.e.reset()
 	}
-	console.log(email, password)
 
 	if (googleUser || user) {
-		navigate('/home')
+		navigate(from, { replace: true })
 	}
-	console.log(googleUser)
 
 	return (
 		<div>

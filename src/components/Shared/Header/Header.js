@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
 import CustomLink from '../CustomLink/CustomLink'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import auth from '../../../firebase.init'
 
 const Header = () => {
+	const [user] = useAuthState(auth)
 	return (
 		<div className='navbar bg-base-100'>
 			<div className='navbar-start'>
@@ -39,12 +43,11 @@ const Header = () => {
 								Manage Inventories
 							</CustomLink>
 						</li>
-						<li>
-							<CustomLink to='/myitems'>My Items</CustomLink>
-						</li>
-						{/* <li>
-							<CustomLink to='/login'>Login</CustomLink>
-						</li> */}
+						{user && (
+							<li>
+								<CustomLink to='/myitems'>My Items</CustomLink>
+							</li>
+						)}
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -65,19 +68,27 @@ const Header = () => {
 							Manage Inventories
 						</CustomLink>
 					</li>
-					<li>
-						<CustomLink to='/myitems'>My Items</CustomLink>
-					</li>
-					{/* <li>
-						<CustomLink to='/login'>Login</CustomLink>
-					</li> */}
+					{user && (
+						<li>
+							<CustomLink to='/myitems'>My Items</CustomLink>
+						</li>
+					)}
 				</ul>
 			</div>
-			<div className='navbar-end'>
-				<Link to='/login' className='btn'>
-					Log in
-				</Link>
-			</div>
+
+			{user ? (
+				<div className='navbar-end'>
+					<button onClick={() => signOut(auth)} className='btn'>
+						Logout
+					</button>
+				</div>
+			) : (
+				<div className='navbar-end'>
+					<Link to='/login' className='btn'>
+						Log in
+					</Link>
+				</div>
+			)}
 		</div>
 	)
 }
