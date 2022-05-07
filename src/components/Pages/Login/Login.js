@@ -16,20 +16,22 @@ const Login = () => {
 	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth)
 	// const [user, loading, error] = useAuthState(auth)
+	const [checkBox, setCheckBox] = useState(false)
 
-	console.log(email, password)
 	const login = e => {
 		e.preventDefault()
 		signInWithEmailAndPassword(email, password, auth)
 
-		console.log('form submitted')
 		setEmail('')
 		setPassword('')
+		// window.e.reset()
 	}
+	console.log(email, password)
 
 	if (googleUser || user) {
-		navigate('./home')
+		navigate('/home')
 	}
+	console.log(googleUser)
 
 	return (
 		<div>
@@ -38,7 +40,7 @@ const Login = () => {
 					<div class='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
 						<div class='card-body'>
 							<h1 className='text-center text-2xl'> USER LOGIN</h1>
-							<form onSubmit={() => login()}>
+							<form onSubmit={login}>
 								<div class='form-control'>
 									<label class='label'>
 										<span class='label-text'>Email</span>
@@ -57,7 +59,7 @@ const Login = () => {
 									</label>
 									<input
 										onBlur={e => setPassword(e.target.value)}
-										type='text'
+										type={checkBox ? 'text' : 'password'}
 										placeholder='password'
 										class='input input-bordered'
 										required
@@ -69,6 +71,13 @@ const Login = () => {
 										>
 											Forgot password?
 										</a>
+										<label class='label ml-12'>
+											<span class='label-text'>Show Password</span>
+										</label>
+										<input
+											onClick={() => setCheckBox(!checkBox)}
+											type='checkbox'
+										/>
 									</label>
 									<label class='label'>
 										<p>Don't Have Account?</p>
@@ -82,7 +91,7 @@ const Login = () => {
 								</div>
 								{(googleError || error) && (
 									<p className='text-red-600 ml-1'>
-										{googleError.message}
+										{googleError?.message || error?.message}
 									</p>
 								)}
 								{(googleLoading || loading) && (
