@@ -15,6 +15,13 @@ const Register = () => {
 		useSignInWithGoogle(auth)
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth)
+
+	const handleSubmit = e => {
+		e.preventDefault()
+		createUserWithEmailAndPassword(email, password)
+		window.e.reset()
+		console.log(email, password)
+	}
 	console.log(email, password, confirmPassword)
 	if (user) {
 		console.log(user)
@@ -27,9 +34,7 @@ const Register = () => {
 		<div className='w-full md:w-3/4 mx-auto'>
 			<div class='w-full md:w-1/2 mx-auto p-5  border-2 rounded-xl mt-10'>
 				<h1 className='text-center text-2xl'>REGISTER HERE</h1>
-				<form
-					onSubmit={() => createUserWithEmailAndPassword(email, password)}
-				>
+				<form onSubmit={handleSubmit}>
 					<div class='form-control'>
 						<label class='label'>
 							<span class='label-text'>Email</span>
@@ -68,6 +73,21 @@ const Register = () => {
 							</Link>
 						</label>
 					</div>
+					{(googleError || error) && (
+						<p className='text-red-600 ml-1'>
+							{googleError?.message || error?.message}
+						</p>
+					)}
+					{(googleLoading || loading) && (
+						<div class='flex justify-center items-center'>
+							<div
+								class='spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full'
+								role='status'
+							>
+								<span class='visually-hidden'>Loading...</span>
+							</div>
+						</div>
+					)}
 					<button class='btn btn-primary mx-auto form-control w-full mt-3'>
 						SUBMIT
 					</button>
