@@ -20,9 +20,11 @@ const Inventory = () => {
 					<Item key={item._id} item={item}></Item>
 				))}
 			</div>
-			<div className='float-right mr-7'>
+			<div className=''>
 				<Link to='/manageInventories'>
-					<button class='btn btn-wide my-5'>Manage Inventories</button>
+					<button class='btn btn-wide mx-auto block bg-teal-700 my-5'>
+						Manage Inventories
+					</button>
 				</Link>
 			</div>
 		</div>

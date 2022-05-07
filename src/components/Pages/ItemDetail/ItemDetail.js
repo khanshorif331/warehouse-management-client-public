@@ -15,14 +15,16 @@ const ItemDetail = () => {
 			.then(data => setItemDetail(data))
 	}, [id])
 	let newQuantity
+
 	const handleDelivered = () => {
 		console.log(itemDetail.quantity)
 		newQuantity = Number(itemDetail.quantity - 1)
 		// const newQuantity = Number(itemDetail.quantity) - 1
-		// const updatedQuantity = {
-		// 	quantity: newQuantity,
-		// }
+		const updatedQuantity = {
+			quantity: newQuantity,
+		}
 		console.log(itemDetail)
+
 		const url = `http://localhost:5000/itemDetail/${id}`
 		fetch(url, {
 			method: 'PUT',
@@ -37,7 +39,7 @@ const ItemDetail = () => {
 				toast.success('Item delivered successfully.')
 			})
 		)
-		// setQuantity(newQuantity)
+		setQuantity(newQuantity)
 		console.log(itemDetail.quantity, quantity)
 	}
 	console.log(quantity)

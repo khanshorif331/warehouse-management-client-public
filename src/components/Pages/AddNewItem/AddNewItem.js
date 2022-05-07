@@ -19,7 +19,7 @@ const AddNewItem = () => {
 		console.log(item, 'item')
 
 		const { data } = await axios.post('http://localhost:5000/items', item)
-		console.log(data)
+		console.log(item)
 		// toast.success('Item added succesfully')
 		if (!data.success) {
 			console.log('this is false', data)
@@ -52,9 +52,16 @@ const AddNewItem = () => {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<input
+					{...register('email')}
+					placeholder='User-Email'
+					className='block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center'
+					required
+					defaultValue='shorif'
+				/>
+				<input
 					{...register('name')}
 					placeholder='Product Name'
-					className='block mx-auto my-6 p-2 w-3/4 rounded-lg text-center'
+					className='block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center'
 					required
 				/>
 				<input
