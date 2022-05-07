@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import {
 	useSignInWithGoogle,
 	useCreateUserWithEmailAndPassword,
+	useSendEmailVerification,
 } from 'react-firebase-hooks/auth'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 import auth from '../../../firebase.init'
 
 const Register = () => {
@@ -15,21 +17,33 @@ const Register = () => {
 		useSignInWithGoogle(auth)
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth)
+	const [sendEmailVerification] = useSendEmailVerification(auth)
 
 	const handleSubmit = e => {
 		e.preventDefault()
+		if (password != confirmPassword) {
+			return toast.error(
+				'Password didnt match!!Please provide same password'
+			)
+		}
+
 		createUserWithEmailAndPassword(email, password)
+		if (googleError || error) {
+			return toast.error('Email already exists')
+		}
+
+		sendEmailVerification(auth)
+		toast.success('Email verification sent.Please verify your email.')
+
 		window.e.reset()
 		console.log(email, password)
 	}
-	console.log(email, password, confirmPassword)
-	if (user) {
+	console.log(email, typeof password, typeof confirmPassword)
+	if (user || googleUser) {
 		console.log(user)
 		navigate('/home')
 	}
-	if (error) {
-		console.log(error)
-	}
+
 	return (
 		<div className='w-full md:w-3/4 mx-auto'>
 			<div class='w-full md:w-1/2 mx-auto p-5  border-2 rounded-xl mt-10'>
@@ -107,6 +121,7 @@ const Register = () => {
 				<button class='btn btn-info mx-auto w-full '>
 					Continue with Facebook
 				</button>
+				<ToastContainer></ToastContainer>
 			</div>
 		</div>
 	)
