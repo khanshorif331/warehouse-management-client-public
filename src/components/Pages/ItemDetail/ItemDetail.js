@@ -5,47 +5,55 @@ import { toast, ToastContainer } from 'react-toastify'
 const ItemDetail = () => {
 	const { id } = useParams()
 	const [itemDetail, setItemDetail] = useState({})
+	const [loading, setLoading] = useState(false)
 	const [quantity, setQuantity] = useState(itemDetail.quantity)
-	// console.log(Number(itemDetail.quantity), quantity)
+	const handleRestock = e => {
+		e.preventDefault()
+		setQuantity(Number(e.target.quantity.value) + quantity)
+		e.target.reset()
+	}
 
-	// console.log(quantity)
 	useEffect(() => {
+		setLoading(true)
 		fetch(`http://localhost:5000/itemDetail/${id}`)
 			.then(res => res.json())
-			.then(data => setItemDetail(data))
+			.then(data => {
+				setItemDetail(data)
+				setQuantity(Number(data.quantity))
+			})
+		setLoading(false)
 	}, [id])
-	let newQuantity
 
-	const handleDelivered = () => {
-		console.log(itemDetail.quantity)
-		newQuantity = Number(itemDetail.quantity - 1)
-		// const newQuantity = Number(itemDetail.quantity) - 1
-		const updatedQuantity = {
-			quantity: newQuantity,
-		}
-		console.log(itemDetail)
-
+	useEffect(() => {
 		const url = `http://localhost:5000/itemDetail/${id}`
 		fetch(url, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify({ quantity: newQuantity }),
+			body: JSON.stringify({ quantity }),
 		}).then(res =>
 			res.json().then(data => {
-				setQuantity(newQuantity)
-				console.log(data, quantity)
-				toast.success('Item delivered successfully.')
+				if (data.modifiedCount) {
+					console.log(data, quantity)
+					toast.success('Item delivered successfully.')
+				}
 			})
 		)
-		setQuantity(newQuantity)
-		console.log(itemDetail.quantity, quantity)
-	}
-	console.log(quantity)
+	}, [quantity])
 	return (
 		<div className='max-w-[1200px] p-5 border-8 mx-auto mt-5'>
 			<h1 className='text-2xl text-center'> Manage your product</h1>
+			{loading && (
+				<div class='flex justify-center items-center'>
+					<div
+						class='spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full'
+						role='status'
+					>
+						<span class='visually-hidden'>Loading...</span>
+					</div>
+				</div>
+			)}
 			<div className='grid grid-cols-1 md:grid-cols-2 place-items-center'>
 				<div className='my-7 '>
 					<img
@@ -59,16 +67,18 @@ const ItemDetail = () => {
 					<p>Product Id : {itemDetail._id}</p>
 
 					<p className=''>Price : $ {itemDetail.price}</p>
-					<strong className=''>
-						Quantity : {quantity ? quantity : itemDetail.quantity}
-						{/* Quantity : {itemDetail.quantity} */}
-					</strong>
+					<strong className=''>Quantity : {quantity}</strong>
 					<p className=''>Supplier Name: {itemDetail.supplier}</p>
 					<p className=' text-base my-4'>{itemDetail.description}</p>
-					<button onClick={handleDelivered} class='btn btn-active'>
+					<button
+						onClick={() => {
+							setQuantity(Number(quantity - 1))
+						}}
+						class='btn btn-active'
+					>
 						Delivered
 					</button>
-					<div className='mt-4'>
+					<form onSubmit={handleRestock} className='mt-4'>
 						<input
 							className='p-3 border-2 rounded'
 							type='number'
@@ -77,7 +87,7 @@ const ItemDetail = () => {
 							placeholder='Update Quantity'
 						/>
 						<button class='btn btn-active'>Restock Item</button>
-					</div>
+					</form>
 				</div>
 				<div className=''>
 					<Link to='/manageInventories'>
