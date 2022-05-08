@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
 	useSignInWithEmailAndPassword,
 	useSignInWithGoogle,
+	useSendPasswordResetEmail,
 } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Login = () => {
 	const navigate = useNavigate()
@@ -15,7 +17,8 @@ const Login = () => {
 		useSignInWithGoogle(auth)
 	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth)
-	// const [user, loading, error] = useAuthState(auth)
+	const [sendPasswordResetEmail, sending, error2] =
+		useSendPasswordResetEmail(auth)
 	const [checkBox, setCheckBox] = useState(false)
 	let from = location.state?.from?.pathname || '/'
 
@@ -25,6 +28,15 @@ const Login = () => {
 
 		setEmail('')
 		setPassword('')
+	}
+	const handleResetPassword = () => {
+		if (email) {
+			sendPasswordResetEmail(email)
+			toast.success('Reset password code sent!')
+			console.log('forgor')
+		} else {
+			return toast.error('Please enter your email')
+		}
 	}
 
 	if (googleUser || user) {
@@ -63,12 +75,12 @@ const Login = () => {
 										required
 									/>
 									<label class='label'>
-										<a
-											href='#'
+										<button
+											onClick={handleResetPassword}
 											class='label-text-alt link link-hover'
 										>
 											Forgot password?
-										</a>
+										</button>
 										<label class='label ml-12'>
 											<span class='label-text'>Show Password</span>
 										</label>
@@ -130,6 +142,7 @@ const Login = () => {
 							class='w-full'
 							alt='Phone image'
 						/>
+						<ToastContainer></ToastContainer>
 					</div>
 				</div>
 			</div>
