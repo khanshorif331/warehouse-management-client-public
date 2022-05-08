@@ -3,24 +3,29 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import 'react-toastify/dist/ReactToastify.css'
 // import Header from './Header'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import Swal from 'sweetalert2'
+import auth from '../../../firebase.init'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const AddNewItem = () => {
 	const { register, handleSubmit, reset } = useForm()
 	const [item, setItem] = useState('')
+	const [user] = useAuthState(auth)
 
 	const onSubmit = async inputValue => {
 		console.log(inputValue)
 		// setItem(JSON.stringify(item))
 		setItem(inputValue)
 		console.log(item, 'item')
+		if (!item.email) {
+			return toast('Please provide your email or try again')
+		}
 
 		const { data } = await axios.post('http://localhost:5000/items', item)
 		console.log(item)
-		// toast.success('Item added succesfully')
 		if (!data.success) {
 			console.log('this is false', data)
 			Swal.fire({
@@ -56,7 +61,7 @@ const AddNewItem = () => {
 					placeholder='User-Email'
 					className='block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center'
 					required
-					defaultValue='shorif'
+					value={user?.email}
 				/>
 				<input
 					{...register('name')}

@@ -17,8 +17,7 @@ const Login = () => {
 		useSignInWithGoogle(auth)
 	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth)
-	const [sendPasswordResetEmail, sending, error2] =
-		useSendPasswordResetEmail(auth)
+	const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth)
 	const [checkBox, setCheckBox] = useState(false)
 	let from = location.state?.from?.pathname || '/'
 
