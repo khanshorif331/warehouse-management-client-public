@@ -12,7 +12,7 @@ const Item = ({ item }) => {
 	}
 	return (
 		<div data-aos='flip-left' className='anime p-4'>
-			<div class='flex justify-center'>
+			<div class='flex justify-center min-h-[680px]'>
 				<div class='rounded-lg shadow-lg bg-white max-w-sm'>
 					<a
 						href='#!'

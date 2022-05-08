@@ -35,7 +35,6 @@ const ItemDetail = () => {
 		}).then(res =>
 			res.json().then(data => {
 				if (data.modifiedCount) {
-					console.log(data, quantity)
 					toast.success('Item delivered successfully.')
 				}
 			})

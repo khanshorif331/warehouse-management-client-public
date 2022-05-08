@@ -115,11 +115,11 @@ const ManageInventories = () => {
 						})}
 					</tbody>
 				</table>
-				<div className='flex py-4 justify-center '>
+				<div className='flex flex-wrap max-w-[800px] mx-auto py-4 justify-center bg-teal-800 my-5 '>
 					{[...Array(totalPage).keys()].map(number => (
 						<div
 							onClick={() => setPageNumber(number)}
-							className={`mx-3 border border-black px-3  py-1 cursor-pointer ${
+							className={`m-3 border border-black px-3  py-1 cursor-pointer ${
 								pageNumber === number ? 'bg-black text-white' : ''
 							}`}
 						>
@@ -128,7 +128,7 @@ const ManageInventories = () => {
 					))}
 					<select
 						defaultValue={limit}
-						className='px-4 ml-3'
+						className='px-4 mr-3 '
 						onChange={e => setLimit(e.target.value)}
 					>
 						<option value='5'> 5 </option>
