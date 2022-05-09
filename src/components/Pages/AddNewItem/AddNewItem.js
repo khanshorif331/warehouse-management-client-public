@@ -24,7 +24,10 @@ const AddNewItem = () => {
 			return toast('Please provide your email or try again')
 		}
 
-		const { data } = await axios.post('http://localhost:5000/items', item)
+		const { data } = await axios.post(
+			'https://limitless-anchorage-92052.herokuapp.com/items',
+			item
+		)
 		console.log(item)
 		if (!data.success) {
 			console.log('this is false', data)

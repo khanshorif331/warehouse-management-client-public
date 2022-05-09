@@ -15,7 +15,7 @@ const ItemDetail = () => {
 
 	useEffect(() => {
 		setLoading(true)
-		fetch(`http://localhost:5000/itemDetail/${id}`)
+		fetch(`https://limitless-anchorage-92052.herokuapp.com/itemDetail/${id}`)
 			.then(res => res.json())
 			.then(data => {
 				setItemDetail(data)
@@ -25,7 +25,7 @@ const ItemDetail = () => {
 	}, [id])
 
 	useEffect(() => {
-		const url = `http://localhost:5000/itemDetail/${id}`
+		const url = `https://limitless-anchorage-92052.herokuapp.com/itemDetail/${id}`
 		fetch(url, {
 			method: 'PUT',
 			headers: {

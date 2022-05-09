@@ -48,6 +48,11 @@ const Header = () => {
 								<CustomLink to='/myitems'>My Items</CustomLink>
 							</li>
 						)}
+						{user && (
+							<li>
+								<CustomLink to='/addItem'>Add New Item</CustomLink>
+							</li>
+						)}
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -71,6 +76,11 @@ const Header = () => {
 					{user && (
 						<li>
 							<CustomLink to='/myitems'>My Items</CustomLink>
+						</li>
+					)}
+					{user && (
+						<li>
+							<CustomLink to='/addItem'>Add New Item</CustomLink>
 						</li>
 					)}
 				</ul>

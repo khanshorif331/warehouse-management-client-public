@@ -4,17 +4,42 @@ import { useEffect, useState } from 'react'
 
 const Inventory = () => {
 	const [items, setItems] = useState([])
+	const [loading, setLoading] = useState(false)
+
 	useEffect(() => {
-		fetch('http://localhost:5000/items')
+		setLoading(true)
+		fetch('https://limitless-anchorage-92052.herokuapp.com/items')
 			.then(res => res.json())
-			.then(data => setItems(data.data))
+			.then(data => {
+				setItems(data.data)
+				setLoading(false)
+			})
 	}, [])
+	if (loading) {
+		return (
+			<div class='flex items-center justify-center space-x-2'>
+				<div
+					class='spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full'
+					role='status'
+				>
+					<span class='visually-hidden'>Loading...</span>
+				</div>
+				<div
+					class='spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0'
+					role='status'
+				>
+					<span class='visually-hidden'>Loading...</span>
+				</div>
+			</div>
+		)
+	}
 
 	return (
 		<div className='mx-auto'>
 			<h1 className='text-xl text-yellow-500 text-center my-9'>
 				Inventory Items
 			</h1>
+
 			<div className='grid gap-4 grid-cols-1 md:grid-cols-3'>
 				{items.slice(0, 6).map(item => (
 					<Item key={item._id} item={item}></Item>

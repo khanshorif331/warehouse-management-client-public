@@ -8,15 +8,17 @@ const ManageInventories = () => {
 	const [limit, setLimit] = useState(10)
 	const [pageNumber, setPageNumber] = useState(0)
 	const [totalPage, setTotalPage] = useState(0)
+	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
+		setLoading(true)
 		;(async () => {
 			const { data } = await axios.get(
-				`http://localhost:5000/items?limit=${limit}&pageNumber=${pageNumber}`
+				`https://limitless-anchorage-92052.herokuapp.com/items?limit=${limit}&pageNumber=${pageNumber}`
 			)
-			console.log(data)
 			setItems(data.data)
 			setTotalPage(Math.ceil(data.count / limit))
+			setLoading(false)
 		})()
 	}, [limit, pageNumber])
 
@@ -32,7 +34,7 @@ const ManageInventories = () => {
 			confirmButtonText: 'Yes, delete it!',
 		}).then(result => {
 			if (result.isConfirmed) {
-				const url = `http://localhost:5000/item/${id}`
+				const url = `https://limitless-anchorage-92052.herokuapp.com/item/${id}`
 				fetch(url, {
 					method: 'DELETE',
 				})
@@ -59,7 +61,22 @@ const ManageInventories = () => {
 					</button>
 				</Link>
 			</div>
-
+			{loading && (
+				<div class='flex items-center justify-center space-x-2'>
+					<div
+						class='spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full'
+						role='status'
+					>
+						<span class='visually-hidden'>Loading...</span>
+					</div>
+					<div
+						class='spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0'
+						role='status'
+					>
+						<span class='visually-hidden'>Loading...</span>
+					</div>
+				</div>
+			)}
 			<div className='overflow-x-auto w-full'>
 				<table className='table max-w-[1800] mx-auto'>
 					<thead>
@@ -128,7 +145,7 @@ const ManageInventories = () => {
 					))}
 					<select
 						defaultValue={limit}
-						className='px-4 mr-3 '
+						className='px-6 py-3 mx-4 select-multiple cursor-pointer bg-inherit'
 						onChange={e => setLimit(e.target.value)}
 					>
 						<option value='5'> 5 </option>
