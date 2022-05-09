@@ -58,6 +58,7 @@ const Register = () => {
 							type='email'
 							placeholder='email'
 							class='input input-bordered'
+							required
 						/>
 					</div>
 					<div class='form-control'>
@@ -69,6 +70,7 @@ const Register = () => {
 							type='password'
 							placeholder='password'
 							class='input input-bordered'
+							required
 						/>
 						<label class='label'>
 							<span class='label-text'>Confirm Password</span>
@@ -78,6 +80,7 @@ const Register = () => {
 							type='password'
 							placeholder='confirm-password'
 							class='input input-bordered'
+							required
 						/>
 
 						<label class='label'>

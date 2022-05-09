@@ -24,10 +24,8 @@ const Login = () => {
 	const login = e => {
 		e.preventDefault()
 		signInWithEmailAndPassword(email, password, auth)
-
-		setEmail('')
-		setPassword('')
 	}
+
 	const handleResetPassword = () => {
 		if (email) {
 			sendPasswordResetEmail(email)
