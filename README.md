@@ -1,3 +1,7 @@
+## Preview
+
+![alt text](https://i.ibb.co/dLtJ04S/image.png)
+
 # My warehouse project
 
 Live Website Link [Warehouse Management](https://warehouse-management-3798b.web.app/).
