@@ -2,7 +2,7 @@
 
 Live Website Link [Warehouse Management](https://warehouse-management-3798b.web.app/).
 
-server link [Backend](https://limitless-anchorage-92052.herokuapp.com/).
+server link [Backend](https://warehouse-management-server-public.onrender.com/).
 
 ## Technologies used in this project
 

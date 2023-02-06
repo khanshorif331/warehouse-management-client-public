@@ -12,7 +12,7 @@ const MyItem = () => {
 		setLoading(true)
 		const getMyItems = async () => {
 			const email = user.email
-			const url = `https://limitless-anchorage-92052.herokuapp.com/myitem?email=${email}`
+			const url = `https://warehouse-management-server-public.onrender.com/myitem?email=${email}`
 			const { data } = await axios.get(url)
 			setMyItems(data)
 			setLoading(false)
@@ -32,7 +32,7 @@ const MyItem = () => {
 			confirmButtonText: 'Yes, delete it!',
 		}).then(result => {
 			if (result.isConfirmed) {
-				const url = `https://limitless-anchorage-92052.herokuapp.com/item/${id}`
+				const url = `https://warehouse-management-server-public.onrender.com/item/${id}`
 				fetch(url, {
 					method: 'DELETE',
 				})
@@ -49,30 +49,30 @@ const MyItem = () => {
 	}
 
 	return (
-		<div className='min-h-screen'>
-			<h1 className='text-center my-4 text-2xl'>
+		<div className="min-h-screen">
+			<h1 className="text-center my-4 text-2xl">
 				Welcome {user.displayName} !!
 			</h1>
-			<h1 className='text-center mb-4'> MY Items: {myItems.length}</h1>
+			<h1 className="text-center mb-4"> MY Items: {myItems.length}</h1>
 			{loading && (
-				<div class='flex items-center justify-center space-x-2'>
+				<div class="flex items-center justify-center space-x-2">
 					<div
-						class='spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full'
-						role='status'
+						class="spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full"
+						role="status"
 					>
-						<span class='visually-hidden'>Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 					<div
-						class='spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0'
-						role='status'
+						class="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
+						role="status"
 					>
-						<span class='visually-hidden'>Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
 			)}
 
-			<div className='overflow-x-auto w-full'>
-				<table className='table max-w-[1800] mx-auto'>
+			<div className="overflow-x-auto w-full">
+				<table className="table max-w-[1800] mx-auto">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -87,18 +87,18 @@ const MyItem = () => {
 							return (
 								<tr key={item._id}>
 									<td>
-										<div className='flex items-center space-x-3'>
-											<div className='avatar'>
-												<div className='mask mask-squircle w-12 h-12'>
+										<div className="flex items-center space-x-3">
+											<div className="avatar">
+												<div className="mask mask-squircle w-12 h-12">
 													<img
 														src={item.img}
-														alt='Avatar Tailwind CSS Component'
+														alt="Avatar Tailwind CSS Component"
 													/>
 												</div>
 											</div>
 											<div>
-												<div className='font-bold'>{item.name}</div>
-												<div className='text-sm opacity-50'>
+												<div className="font-bold">{item.name}</div>
+												<div className="text-sm opacity-50">
 													{item?.email}
 												</div>
 											</div>
@@ -107,7 +107,7 @@ const MyItem = () => {
 									<td>
 										$ {item.price}
 										<br />
-										<span className='badge badge-ghost badge-sm'>
+										<span className="badge badge-ghost badge-sm">
 											Bangladeshi Taka
 										</span>
 									</td>
@@ -116,7 +116,7 @@ const MyItem = () => {
 									<th>
 										<button
 											onClick={() => handleDelete(item._id)}
-											className='btn btn-active bg-red-600 text-white'
+											className="btn btn-active bg-red-600 text-white"
 										>
 											Delete
 										</button>

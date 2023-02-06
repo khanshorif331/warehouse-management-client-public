@@ -14,7 +14,7 @@ const ManageInventories = () => {
 		setLoading(true)
 		;(async () => {
 			const { data } = await axios.get(
-				`https://limitless-anchorage-92052.herokuapp.com/items?limit=${limit}&pageNumber=${pageNumber}`
+				`https://warehouse-management-server-public.onrender.com/items?limit=${limit}&pageNumber=${pageNumber}`
 			)
 			setItems(data.data)
 			setTotalPage(Math.ceil(data.count / limit))
@@ -34,7 +34,7 @@ const ManageInventories = () => {
 			confirmButtonText: 'Yes, delete it!',
 		}).then(result => {
 			if (result.isConfirmed) {
-				const url = `https://limitless-anchorage-92052.herokuapp.com/item/${id}`
+				const url = `https://warehouse-management-server-public.onrender.com/item/${id}`
 				fetch(url, {
 					method: 'DELETE',
 				})
@@ -51,34 +51,34 @@ const ManageInventories = () => {
 	}
 	return (
 		<div>
-			<h1 className='text-center text-2xl my-4'>Manage All Inventories</h1>
-			<div className='border-2 flex justify-center my-6'>
-				<Link to='/addItem'>
-					<button class='relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800'>
-						<span class='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+			<h1 className="text-center text-2xl my-4">Manage All Inventories</h1>
+			<div className="border-2 flex justify-center my-6">
+				<Link to="/addItem">
+					<button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+						<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 							Add New Item
 						</span>
 					</button>
 				</Link>
 			</div>
 			{loading && (
-				<div class='flex items-center justify-center space-x-2'>
+				<div class="flex items-center justify-center space-x-2">
 					<div
-						class='spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full'
-						role='status'
+						class="spinner-border animate-spin inline-block w-12 h-12 border-4 rounded-full"
+						role="status"
 					>
-						<span class='visually-hidden'>Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 					<div
-						class='spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0'
-						role='status'
+						class="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
+						role="status"
 					>
-						<span class='visually-hidden'>Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
 			)}
-			<div className='overflow-x-auto w-full'>
-				<table className='table max-w-[1800] mx-auto'>
+			<div className="overflow-x-auto w-full">
+				<table className="table max-w-[1800] mx-auto">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -93,18 +93,18 @@ const ManageInventories = () => {
 							return (
 								<tr key={item._id}>
 									<td>
-										<div className='flex items-center space-x-3'>
-											<div className='avatar'>
-												<div className='mask mask-squircle w-12 h-12'>
+										<div className="flex items-center space-x-3">
+											<div className="avatar">
+												<div className="mask mask-squircle w-12 h-12">
 													<img
 														src={item.img}
-														alt='Avatar Tailwind CSS Component'
+														alt="Avatar Tailwind CSS Component"
 													/>
 												</div>
 											</div>
 											<div>
-												<div className='font-bold'>{item.name}</div>
-												<div className='text-sm opacity-50'>
+												<div className="font-bold">{item.name}</div>
+												<div className="text-sm opacity-50">
 													United States
 												</div>
 											</div>
@@ -113,7 +113,7 @@ const ManageInventories = () => {
 									<td>
 										$ {item.price}
 										<br />
-										<span className='badge badge-ghost badge-sm'>
+										<span className="badge badge-ghost badge-sm">
 											Bangladeshi Taka
 										</span>
 									</td>
@@ -122,7 +122,7 @@ const ManageInventories = () => {
 									<th>
 										<button
 											onClick={() => handleDelete(item._id)}
-											className='btn btn-active'
+											className="btn btn-active"
 										>
 											Delete
 										</button>
@@ -132,7 +132,7 @@ const ManageInventories = () => {
 						})}
 					</tbody>
 				</table>
-				<div className='flex flex-wrap max-w-[800px] mx-auto py-4 justify-center bg-teal-800 my-5 '>
+				<div className="flex flex-wrap max-w-[800px] mx-auto py-4 justify-center bg-teal-800 my-5 ">
 					{[...Array(totalPage).keys()].map(number => (
 						<div
 							onClick={() => setPageNumber(number)}
@@ -145,14 +145,14 @@ const ManageInventories = () => {
 					))}
 					<select
 						defaultValue={limit}
-						className='px-6 py-3 mx-4 select-multiple cursor-pointer bg-inherit'
+						className="px-6 py-3 mx-4 select-multiple cursor-pointer bg-inherit"
 						onChange={e => setLimit(e.target.value)}
 					>
-						<option value='5'> 5 </option>
-						<option value='10'> 10 </option>
-						<option value='15'> 15 </option>
-						<option value='20'> 20 </option>
-						<option value='25'> 25 </option>
+						<option value="5"> 5 </option>
+						<option value="10"> 10 </option>
+						<option value="15"> 15 </option>
+						<option value="20"> 20 </option>
+						<option value="25"> 25 </option>
 					</select>
 				</div>
 			</div>

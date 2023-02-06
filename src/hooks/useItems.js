@@ -4,7 +4,9 @@ const useItems = () => {
 	const [items, setItems] = useState([])
 
 	useEffect(() => {
-		fetch('https://limitless-anchorage-92052.herokuapp.com/items?limit=5')
+		fetch(
+			'https://warehouse-management-server-public.onrender.com/items?limit=5'
+		)
 			.then(res => res.json())
 			.then(data => setItems(data))
 	}, [])

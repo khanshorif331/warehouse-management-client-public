@@ -25,7 +25,7 @@ const AddNewItem = () => {
 		}
 
 		const { data } = await axios.post(
-			'https://limitless-anchorage-92052.herokuapp.com/items',
+			'https://warehouse-management-server-public.onrender.com/items',
 			item
 		)
 		console.log(item)
@@ -51,63 +51,63 @@ const AddNewItem = () => {
 	}
 
 	return (
-		<div className='w-full md:w-1/2 mx-auto'>
-			<h1 className='text-center text-2xl'>
+		<div className="w-full md:w-1/2 mx-auto">
+			<h1 className="text-center text-2xl">
 				Provide all info to add new product.
 			</h1>
 			<form
-				className='border-4 mx-auto w-full md:50 mt-10 rounded-lg'
+				className="border-4 mx-auto w-full md:50 mt-10 rounded-lg"
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<input
 					{...register('email')}
-					placeholder='User-Email'
-					className='block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center'
+					placeholder="User-Email"
+					className="block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center"
 					required
 					value={user?.email}
 				/>
 				<input
 					{...register('name')}
-					placeholder='Product Name'
-					className='block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center'
+					placeholder="Product Name"
+					className="block mx-auto mt-10 p-2 w-3/4 rounded-lg text-center"
 					required
 				/>
 				<input
-					type='number'
+					type="number"
 					{...register('price')}
-					placeholder='Price'
-					className='block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
+					placeholder="Price"
+					className="block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg"
 					required
 				/>
 				<input
-					type='number'
+					type="number"
 					{...register('quantity')}
-					placeholder='Quantity'
-					className='block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
+					placeholder="Quantity"
+					className="block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg"
 					required
 				/>
 				<input
 					{...register('supplier')}
-					placeholder='Supplier'
-					className='block mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
+					placeholder="Supplier"
+					className="block mx-auto my-6 p-2 text-center w-3/4 rounded-lg"
 					required
 				/>
 				<input
 					{...register('img')}
-					placeholder='Image Link'
-					className='block mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
+					placeholder="Image Link"
+					className="block mx-auto my-6 p-2 text-center w-3/4 rounded-lg"
 					required
 				/>
 
 				<textarea
 					{...register('description')}
-					placeholder='Description'
-					className='block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg'
+					placeholder="Description"
+					className="block border-0 mx-auto my-6 p-2 text-center w-3/4 rounded-lg"
 					required
 				/>
 				<input
-					type='submit'
-					className='btn block mx-auto my-6 p-2 text-center w-3/4 rounded-lg cursor-pointer'
+					type="submit"
+					className="btn block mx-auto my-6 p-2 text-center w-3/4 rounded-lg cursor-pointer"
 				/>
 			</form>
 			<ToastContainer></ToastContainer>
