@@ -29,3 +29,7 @@ server link [Backend](https://warehouse-management-server-public.onrender.com/).
 -  User can add products
 -  User can delete products also
 -  Fully managable website
+
+
+## Preview
+![alt text](https://i.ibb.co/dLtJ04S/image.png)
