@@ -1,6 +1,7 @@
 ## Preview
 
 ![alt text](https://i.ibb.co/dLtJ04S/image.png)
+![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
 
 # My warehouse project
 
