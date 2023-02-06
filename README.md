@@ -32,4 +32,4 @@ server link [Backend](https://warehouse-management-server-public.onrender.com/).
 
 
 ## Preview
-![alt text](https://i.ibb.co/dLtJ04S/image.png)
+![alt text](https://i.ibb.co/cyXWVRh/Image.png)
