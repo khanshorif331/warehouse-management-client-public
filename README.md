@@ -2,6 +2,10 @@
 
 Live Website Link [Warehouse Management](https://warehouse-management-3798b.web.app/).
 
+## Server Side Code 
+
+https://github.com/khanshorif331/warehouse-management-server-public
+
 server link [Backend](https://warehouse-management-server-public.onrender.com/).
 
 ## Technologies used in this project
