@@ -1,7 +1,6 @@
 ## Preview
 
 ![alt text](https://i.ibb.co/cyXWVRh/Image.png)
-![GitHub Logo](https://i.ibb.co/fqvMYX2/image.png)
 
 # My warehouse project
 
@@ -31,5 +30,3 @@ server link [Backend](https://warehouse-management-server-public.onrender.com/).
 -  Fully managable website
 
 
-## Preview
-![alt text](https://i.ibb.co/cyXWVRh/Image.png)
