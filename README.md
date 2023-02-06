@@ -1,6 +1,6 @@
 ## Preview
 
-![alt text](https://i.ibb.co/dLtJ04S/image.png)
+![alt text] (https://i.ibb.co/dLtJ04S/image.png)
 
 # My warehouse project
 
