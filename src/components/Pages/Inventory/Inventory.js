@@ -36,7 +36,7 @@ const Inventory = () => {
 
 	return (
 		<div className="mx-auto">
-			<h1 className="text-xl text-yellow-500 text-center my-9">
+			<h1 className="text-xl text-yellow-500 text-center mt-9">
 				Inventory Items
 			</h1>
 
