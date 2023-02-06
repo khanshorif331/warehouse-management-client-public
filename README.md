@@ -1,7 +1,7 @@
 ## Preview
 
 ![alt text](https://i.ibb.co/dLtJ04S/image.png)
-![GitHub Logo](https://i.ibb.co/dLtJ04S/image.png)
+![GitHub Logo](https://i.ibb.co/NttxFwS/knife-1.png)
 
 # My warehouse project
 
